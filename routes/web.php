@@ -1,5 +1,7 @@
 <?php
 
+use Faker\Provider\HtmlLorem;
+use Faker\Provider\Lorem;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +16,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('listings', [
+        'heading' => 'Latest Listings',
+        'listings' => [
+            [
+                'id'=> 1,
+            'title'=> 'Listing One',
+            'description'=> 'blah blah blah'
+            ],
+            [
+                'id'=> 2,
+            'title'=> 'Listing Two',
+            'description'=> 'blah blah blah'
+            ],
+
+        ]
+    ]);
 });

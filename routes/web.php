@@ -3,6 +3,7 @@
 use Faker\Provider\HtmlLorem;
 use Faker\Provider\Lorem;
 use Illuminate\Support\Facades\Route;
+use App\Models\Listing;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,21 +16,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//All Job Listings Route
 Route::get('/', function () {
     return view('listings', [
         'heading' => 'Latest Listings',
-        'listings' => [
-            [
-                'id'=> 1,
-            'title'=> 'Listing One',
-            'description'=> 'blah blah blah'
-            ],
-            [
-                'id'=> 2,
-            'title'=> 'Listing Two',
-            'description'=> 'blah blah blah'
-            ],
+        'listings' => Listing::all(),
+    ]);
+});
 
-        ]
+//Single Job Listing Route
+Route::get('/listings/{id}', function($id){
+    return view('listing', [
+        'listing'=> Listing::find($id),
     ]);
 });
